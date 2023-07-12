@@ -1,5 +1,6 @@
 const express = require("express");
 const twilio = require("twilio");
+const cors = require("cors");
 
 require("dotenv").config();
 
@@ -10,6 +11,9 @@ function generateOTP() {
   const otp = Math.floor(100000 + Math.random() * 900000);
   return otp.toString();
 }
+
+// Enable CORS
+app.use(cors());
 
 // API endpoint for sending SMS with OTP
 app.get("/api/send-otp", (req, res) => {
